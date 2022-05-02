@@ -1,0 +1,39 @@
+#----------------------------------------------------------------
+* Names: Olasubomi Badiru - 3101002 || Alex Lyndon 3111431 || Collette Patalinghog 3110938
+* Lab section: CMPT-201-X01L(1) and CMPT-201-X03L
+* assignment: A3Plan.txt
+* last worked on: March 17th
+* due date: April 5th   
+#----------------------------------------------------------------
+
+
+List of files and directories submitted
+
+
+makefile       -
+peep.c         - functions relevant to running a succesful editing session contains main()
+peepEditor.c   - function implementations used in peep.c
+peepEditor.h   - function prototypes for peepEditor.c
+blockChain.h   - function and struct definitions/prototypes for blockChain.c
+blockChain.c   - function implementation for the blockChain program 
+
+README
+design.txt     - design justification and events in program development
+A3Plan.txt     - initial plans involving program design and implementation
+Tests directory: contains all relevant files used during testing
+      testing.txt
+      TestWrite.c
+      TestRead.c
+      TestPeep.c
+      TestGetPeep.c
+      TestAddTransactions.c //might be unnecessary
+      TestPrintTransactions.c // also might be unnecessary
+
+binaryTestFiles: contains binary files with blockChains and transactions written to them
+		 makes testing easier with preset data
+
+	transactionOut
+	transactionOut2
+	blockChainOut
+	blockChainOut2
+

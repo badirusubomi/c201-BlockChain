@@ -1,0 +1,182 @@
+/*-----------------------------------------------------------------
+# Students'  Names: Olasubomi Badiru - 3101002 || Alex Lyndon 3111431 || Collette Patalinghog 3110938
+# Design.txt ASS3
+# Submission date: April 5th 2022
+# Lab Section: X01L || X03L , Winter 2022
+# CMPUT 201, Winter 2022
+# Lab Instructor's Name: Hanan Saleh
+#----------------------------------------------------------------*/
+
+
+Program development Order
+-design.txt
+- blockChain.h
+- peepEditor.c
+- makefile
+- blockChain.c
+	readBlockChain
+  	writeBlockChain
+  	getPeep
+  	getPeepAtTime
+  	addTransactions
+  	printTransactions
+  	printIndividualTransaction
+  	verifyBlockChain
+- peep.c
+- testing.txt
+- Tests
+
+NOTES ON PeepEditor()
+//=====================================================================================
+
+Design for peepEditor.c:
+1. displayMenu
+---------------------------------------------------------------
+   parameters: void
+   return: int indicating user input
+---------------------------------------------------------------
+- uses a do-while loop to error-check and keep prompting for input
+  if the user inputs an integer outside of the range 1-4
+- ISSUES ENCOUNTERED: none
+
+2. displayPeep
+---------------------------------------------------------------
+   parameters: peep
+   return: none
+---------------------------------------------------------------
+- sets an int variable "count" to 1 to start from position 1 in
+  the peep
+- the while loop keeps incrementing if the current character in peep
+  is not the null terminator + if the count is less than 257 since
+  a peep can only hold 256 characters
+- prints a newline after the while loop for to keep a neat structure
+- ISSUES ENCOUNTERED: none
+
+
+3. check_len
+---------------------------------------------------------------
+   parameters: peep
+   return: int indicating length of peep
+---------------------------------------------------------------
+- sets an int variable "i" to 0 to keep count of valid characters
+- helper function for insert and delete functions to make it
+  easier for the functions to do the shifting of characters
+- the for loop increments and checks if the peep character at
+  position i is a null terminator; it breaks and returns i when it
+  encounters the null terminator or when 256 is reached (since a
+  peep can only hold 256 characters)
+- ISSUES ENCOUNTERED: none
+
+4. insert
+---------------------------------------------------------------
+   parameters: pointer to a Modification struct, peep
+   return: int to indicate normal termination (0)
+---------------------------------------------------------------
+- the peep's current length is checked by helper function check_len
+- sets an int variable "validPosition" which is the peep's length + 1
+  to compare it with user input and ensure the position the user wants
+  to insert will work for the current peep
+- if the peep is full, or if the position entered by the user is greater
+  than validPosition, or if the position input by the user is less than
+  the 1st position, the function will return 1 to indicate abnormal
+  termination
+- if the peep isn't full and the position entered by the user is valid,
+  a while loop will then check if the character the user wants to insert
+  is a printable character
+- to shift characters, a char * variable "temp" is used to store the
+  characters after the user-specified position and is copied back into
+  the peep after the given character has been inserted into the peep
+- ISSUES ENCOUNTERED: the while loop to take a character from the user
+  would prompt it twice each run; this was resolved by using fflush(stdin)
+  to clear the buffer
+
+5. delete
+---------------------------------------------------------------
+   parameters: pointer to a Modification struct, peep
+   return: int to indicate normal termination (0)
+---------------------------------------------------------------
+- the peep's current length is checked by helper function check_len
+- if the position given by the user is greater than the length of the
+  peep, the function will return 1 to indicate abnormal termination
+- to shift characters, a char * variable "temp" is used to store the
+  characters after the user-specified position and is copied back into
+  the peep after the character at the position has been deleted from the
+  peep
+- ISSUES ENCOUNTERED: none
+
+6. editor
+---------------------------------------------------------------
+   parameters: pointer to a Transaction struct, peep
+   return: unsigned int to indicate number of transactions
+---------------------------------------------------------------
+- if the user chooses to insert or delete a character, either function's
+  return will be checked - if the functions return 0, then editor
+  will keep executing as it means that the functions terminated
+  successfully
+- each time insert or delete is called, the function will reallocate
+  for the Transaction struct to allow for any number of transactions
+- ISSUES ENCOUNTERED: editor wasn't able to properly reallocate as it 
+  produced segmentation faults; this was solved by creating two helper 
+  functions to write the transactions to a file and read the 
+  transactions from the same file when we need to access them
+
+7. saveTrans
+---------------------------------------------------------------
+   parameters: pointer to a Transaction struct, filename, number
+               of transactions
+   return: none
+---------------------------------------------------------------
+- helper function for editor; since we had the issue of reallocating
+  memory and updating the pointer to modBuffer from main, this writes
+  the transactions to a file to preserve modBuffer's integrity
+- ISSUES ENCOUNTERED: none
+
+8. readTrans
+---------------------------------------------------------------
+   parameters: pointer to a Transaction struct, filename
+   return: pointer to a Transaction struct
+---------------------------------------------------------------
+- helper function for editor; opens, retrieves, and returns the
+  contents of the file written to by saveTrans
+- ISSUES ENCOUNTERED: none
+
+//====================================================================================
+
+Initial Design approach:-
+	- make data as compact as possible
+	- make data retrieval as efficient as possible
+	- extensive function documentation
+	- consistent naming conventions
+	
+
+Design Choices:-
+
+	- Writing to files: Our read and write functions operate with binary files
+       		Justification:- easier to read and write;
+				easier to tell the number of blocksto be read by using ftell() and fseek()
+	- Introducing another struct BlockChain-
+	  	Justification:- easy to keep track of blocksize without using global variables
+				helps preserve pointer relevance
+	- addTransactions accepts a Transaction pointer that holds an unlimited number of transactions
+	  		  	  (implies  could exceed 64 transactions)
+	- writeBlockChain() - this function write the blockchain all  at once since the blockChain is just an array of blocks without pointers to other arrays
+
+Final thoughts:
+      - Project could be more secure using a linked list structure, but that would require a lot
+        of extra debugging and maintenance which the assignment window would not allow for;
+      - Functions can be made more efficient upon revision of the project
+      - We are proud of this project, and we had fun working on it( *coughs* finishing it).
+
+
+Issue We ran into:
+
+        - realloc in editor() did not update the pointer to the modBuffer from main();
+      		this created some segmentation faults when we tried freeing memory in main()
+		SOLUTION:
+			We modified the editor to write the transactions to a file - writeTrans();
+			then we read from that file -readTrans() when we want to access the
+			transactions that were created in the editing session;
+	- 
+	-
+	-
+	-

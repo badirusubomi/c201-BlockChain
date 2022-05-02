@@ -1,0 +1,59 @@
+* Names: Olasubomi Badiru - 3101002 || Alex Lyndon 3111431 || Collette Patalinghog 3110938
+ * Lab section: CMPT-201-X01L(1) and CMPT-201-X03L
+ * assignment: A3Plan.txt
+ * last worked on: March 17th
+ * due date: April 5th
+
+						//Assignment Schedule:
+
+>>Week of 14th March
+	Tuesday 15th: Meet with group and plan; Set up Git
+	Thursday 17th: Finish setting up git. Continue Header file [blockChain.h] and planning
+	Friday 18th:   finish header file; submit header files and Assignment Plan
+
+>>Week of 21st March
+	
+	Delegation of functions for Milestone 2 - the peep Editor
+
+ 	- Alex will write editor() and insert() helper function
+	- Subomi will write delete() helper function
+	- Collette will write displayMenu() and displayPeep()
+
+
+	Monday 21st:    Work individually on peepEditor functions
+	Tue: 		Meet to discuss progress and our code
+	Wed:		Continue working on functions
+	Thurs: 		Integrate our code, test for input values
+	Fri:		More integration testing. Prepare files for submission.
+	Sun 27th: 	submit A3M2.tar.gz
+
+>>Week of 28th March
+
+	Function delegation for blockChain.c:
+
+	-Subomi will write the functions writeBlockChain() and readBlockChain()
+	-Collette will write addTransactions() and printTransactions()
+	-Alex will write getPeep() and getPeepAtTime()
+	-Alex and Subomi will collaborate on verifyBlockChain()
+
+
+	Monday 28th:    Work independently on function implementation
+	Tue: 		Meet to discuss progress and issues
+	Wed:		Work independently
+	Thurs: 		Meet to discuss, help one another with code
+	Fri:		Meet and ask questions for Professor
+	Sun: 		Integration testing for our different functions.
+
+
+>>Week of 4th April:
+	Monday 4th: 	Independent work, test that peepEditor.c and blockChain.c cooperate
+	Tue:		Meet for final testing and preparation for submission
+
+			SUBMIT THE ASSIGNMENT!!
+
+
+
+Questions:
+- Verify code structure
+- 
+

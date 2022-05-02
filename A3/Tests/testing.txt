@@ -1,0 +1,210 @@
+/*-----------------------------------------------------------------
+ * Names: Olasubomi Badiru - 3101002 || Alex Lyndon 3111431 || Collette Patalinghog 3110938
+ * Lab section: CMPT-201-X01L and CMPT-201-X03L
+ * assignment: testing.txt
+ * last worked on: April 5th
+ * due date: April 5th
+#----------------------------------------------------------------*/
+
+IMPORTANT NOTE: most test targets require command line arguments to pass fileNames
+	  	test accordingly.
+		Some functions require memory allocation for the blockChain before calling them;
+		Others do not.
+		Read function documentation and call Appropriately
+
+//                                      Tests for peepEditor.c
+**TestEditorNoTrns
+
+source file: TestPeepEditor.c
+object file: TestPeepEditor.o
+executable:  TestEditorNoTrns
+
+make command: testEditorNoTrns
+Note, lowercase t for make command
+
+Test Summary:  will create an empty peep and call editor() to handle 0 transactions and
+	           redirect its output to a text file; "diff" will be used to compare the 
+			   output text file to the correct one
+
+
+
+**TestEditor10Trns
+
+source file: TestPeepEditor.c 
+object file: TestPeepEditor.o 
+executable:  TestEditor10Trns 
+
+make command: testEditor10Trns
+Note, lowercase t for make command 
+
+Test Summary:  will create an empty peep and call editor() to handle 10 transactions 
+               by redirecting an input text file containing 10 transactions; its 
+			   output will be redirected to a text file and "diff" will be used to 
+			   compare the output text file to the correct one
+
+
+
+**TestEditor30Trns
+
+source file: TestPeepEditor.c 
+object file: TestPeepEditor.o 
+executable:  TestEditor30Trns 
+
+make command: testEditor30Trns 
+Note, lowercase t for make command 
+
+Test Summary:  will create an empty peep and call editor() to handle 30 transactions
+               by redirecting an input text file containing 30 transactions; its
+			   output will be redirected to a text file and "diff" will be used to 
+			   compare the output text file to the correct one
+
+
+
+**TestEditor64Trns
+
+source file: TestPeepEditor.c 
+object file: TestPeepEditor.o 
+executable:  TestEditor64Trns 
+
+make command: testEditor64Trns 
+Note, lowercase t for make command 
+
+Test Summary:  will create an empty peep and call editor() to handle 64 transactions
+               by redirecting an input text file containing 64 transactions; its
+			   output will be redirected to a text file and "diff" will be used to 
+			   compare the output text file to the correct one
+
+
+
+**TestEditor64P
+
+source file: TestPeepEditor.c 
+object file: TestPeepEditor.o 
+executable:  TestEditor64P 
+
+make command: testEditor64P 
+Note, lowercase t for make command 
+
+Test Summary:  will create an empty peep and call editor() to handle more than 64 transactions
+               transactions by redirecting an input text file containing 66 transactions;
+			   its output will be redirected to a text file and "diff" will be used to 
+			   compare the output text file to the correct one
+			   
+//====                                  Tests for blockchain.c   
+
+
+**TestRead
+source file: TestRead.c
+object file: TestRead.o
+executable:  TestRead
+
+make command: testRead
+#Note, lowercase t for make command
+
+Note: file names are passed as commandLine arguments
+argv[1] - file containing blockChain to read
+
+Test Summary:  Program reads a blockChain (filename passed as  argv[1] - 'blockChainOut')
+     	       It then prints the transactions from the block using printTransactions
+	       This should verify that printTransactions works fine, so no test files for printTransactions
+	       are provided in this project
+	       Program frees all memory after calling printTransactions
+
+
+**TestWrite
+source file: TestWrite.c
+object file: TestWrite.o
+executable:  TestWrite
+
+make command: testWrite
+#Note, lowercase t
+
+Note: file names are passed by commandLine arguments
+argv[1] - file containing blockChain to read
+argv[2] - file containing transactions to read
+
+Test Summary:  Program reads a blockChain (filename passed as  argv[1] - 'blockChainOut') and displays the peep
+     	       It then prints the transactions from the block using printTransactions
+	       The program then reads more transactions from a binary file containing transactions
+	       (filename passed as  argv[2] - 'transactionOut')
+	       Program then calls addTransactions() to add the new transacrtions to the blockChain
+	       program then calls printTransactions() to very that new transactions were written to the block
+	       and displays the peep
+	       Program frees all memory after calling printTransactions
+
+
+
+**TestAdd
+source file: TestAdd.c
+object file: TestAdd.o
+executable:  TestAdd
+
+make command: testAdd
+#Note, lowercase t
+
+Note: file names are passed by commandLine arguments
+argv[1] - file containing blockChain to read
+argv[2] - file containing transactions to read
+
+
+Test Summary:  Program creates an empty blockChain (filename passed as  argv[1] - 'blockChainOut')
+     	       The program then reads transactions from binary file containing transactions
+	       (filename passed as  argv[2] - 'transactionOut')
+	       Program then calls addTransactions() 3 times to add the transactions to the blockChain
+	       program then calls printTransactions() to display and verify that transactions were
+	       succesfully added to the blockChain
+		   Program also calls getPeep and prints the peep to confirm proper storage and retrieval of editing information
+	       Program frees all memory after calling printTransactions
+
+
+**TestGetPeep
+source file: TestGetPeep.c
+object file: TestGetPeep.o
+executable:  TestGetPeep
+
+make command: testGetPeep
+#Note, lowercase t
+
+Note: file names are passed by commandLine arguments
+argv[1] - file containing transactions to read
+
+
+Test Summary:  Program reads a blockChain (filename passed as  argv[1] - 'blockChainOut')
+     	       It then prints the transactions from the block using printTransactions
+	       The program then calls getPeep() on the blockChain to view the current peep
+	       The program then reads more transactions from binary file containing transactions
+	       (filename passed as  argv[2] - 'transactionOut2')
+	       Program then calls addTransactions() to add the new transacrtions to the blockChain
+	       and then getPeep() to display changes to the peep
+	       program then calls printTransactions() to very that new transactions were written to the block
+	       Program frees all memory after tests
+
+
+**TestVerify
+source file: TestVerify.c
+object file: TestVerify.o
+executable:  TestVerify
+
+make command: testVerify
+#Note, lowercase t for make command
+
+Note: file names are passed as commandLine arguments
+
+Test Summary:  
+	This test will addTransactions from the same transactionOut test binary file we have 3 times.
+	VerifyBlockChain will be called to confirm the integrity of the block chain after writing.
+	Then we modify the contents of two different transactions manually.
+	When verify is called again the blockchain should be confirmed as compromised.
+	Then we fix the transactions to return them to their original state.
+	When verify is called again it should confirm proper integrity of the blockchain. 
+
+
+
+Default main() for Test programs:
+
+int main(int argc, char **argv){
+
+
+
+    return 0;
+}
